@@ -16,6 +16,6 @@ $array = array(
     "newpassword"=>$newpassword,
 );
 
-$result = setLandlord($array);
+$result = setLandlord($array, $mysqli);
 echo json_encode($result);
 ?>

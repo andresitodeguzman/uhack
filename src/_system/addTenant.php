@@ -15,6 +15,6 @@ $array = array(
     "password"=>$password,
 );
 
-$result = addLandlord($array);
+$result = addTenant($array, $mysqli);
 echo json_encode($result);
 ?>

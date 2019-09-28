@@ -13,6 +13,6 @@ $array = array(
     "newprice"=>$newprice
 );
 
-$result = setReceivable($array);
+$result = setReceivable($array, $mysqli);
 echo json_encode($result);
 ?>

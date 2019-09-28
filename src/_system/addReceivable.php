@@ -11,6 +11,6 @@ $array = array(
     "price"=>$price
 );
 
-$result = addReceivable($array);
+$result = addReceivable($array, $mysqli);
 echo json_encode($result);
 ?>
