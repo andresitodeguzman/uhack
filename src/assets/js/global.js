@@ -4,7 +4,7 @@ const clear = ()=>{
 
 const showActivity = (activity)=>{
   clear();
-  $(`#${activity}Activity`).show();
+  $(`#${activity}Activity`).fadeIn();
 };
 
 const isLoggedIn = ()=>{

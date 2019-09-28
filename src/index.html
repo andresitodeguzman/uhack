@@ -18,6 +18,8 @@
     <style>
       body {
         font-family: 'Poppins', sans-serif !important;
+        margin:0;
+        padding:0;
       }
       #myVideo {
         position: fixed;
@@ -27,9 +29,18 @@
         min-height: 100%;
         z-index: -99999999;
       }
+      .loader {        
+        position: fixed; 
+        width: 100%;
+        height: 100%;
+        background-color: #28C37E;
+        z-index: 999999999999999999999999999999999;
+      }
     </style>
   </head>
   <body>
+
+    <div class="loader"></div>
 
     <!-- login Activity -->
     <div class="activity" id="loginActivity">
@@ -120,12 +131,124 @@
               <button class="btn btn-large" onclick="showActivity('code')" style="width:100%; border-radius: 50px; background-color: #28C37E;">Scan QR</button>
               <div style="margin-bottom: 60px;"></div>
               <center>
-                  <a href="#!" style="color: #28C37E; font-size: 15pt;">Maybe Later</a>
+                  <a href="#!" onclick="showActivity('home');" style="color: #28C37E; font-size: 15pt;">Maybe Later</a>
               </center>
               <div style="margin-bottom: 30px;"></div>
         </div>
     </div>
     <!-- .code Activity -->
+
+    <!-- home Activity-->
+    <div class="activity" id="homeActivity">      
+      <nav class="transparent z-depth-0">
+        <div class="left" style="padding-top: 20px; padding-left: 20px;">
+          <a href="#" data-target="slide-out" class="sidenav-trigger">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 6H21V8H3V6ZM3 11H21V13H3V11ZM3 16H21V18H3V16Z" fill="black"/>
+            </svg>    
+          </a>
+        </div>
+        <div class="right" style="padding-top: 20px; padding-right: 20px;">
+          <a href="#!" onclick="showActivity('notification')">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 19V20H3V19L5 17V11C4.99961 9.49223 5.48607 8.02464 6.38698 6.81562C7.28788 5.60661 8.55509 4.72079 10 4.29C9.99508 4.1934 9.99508 4.0966 10 4C10 3.46957 10.2107 2.96086 10.5858 2.58579C10.9609 2.21071 11.4696 2 12 2C12.5304 2 13.0391 2.21071 13.4142 2.58579C13.7893 2.96086 14 3.46957 14 4C14.005 4.097 14.005 4.193 14 4.29C15.4449 4.72079 16.7121 5.60661 17.613 6.81562C18.5139 8.02464 19.0004 9.49223 19 11V17L21 19ZM14 21C14 21.5304 13.7893 22.0391 13.4142 22.4142C13.0391 22.7893 12.5304 23 12 23C11.4696 23 10.9609 22.7893 10.5858 22.4142C10.2107 22.0391 10 21.5304 10 21" fill="#28C37E"/>
+              </svg>    
+          </a>
+        </div>
+      </nav>
+      <ul id="slide-out" class="sidenav grey darken-2">
+          <li><a href="#!" class="white-text">My Account</a></li>
+          <li><a href="#!" class="white-text">Billing</a></li>
+          <li><a href="#!" class="white-text">Report a Concern</a></li>
+        </ul>
+      <div class="container">
+        <center>
+          <h4>Good day<br><b style="color: #28C37E;">Carl Jason</b></h4><br>
+          <img src="assets/homeimg.png">    
+        </center>
+      </div>
+
+      <div style="position:fixed; bottom:0; margin:0; border: 2px solid #28C37E; border-bottom-width:0; padding-left: 10px; padding-right: 10px; border-radius: 25px 25px 0 0; width:calc(100% - 40px); margin: 0 20px; text-align:center; background-color: white;">
+          <br>
+          <p style="margin:0;">Amount to Pay</p>
+          <h5 style="color: #28C37E; margin:0;"><b>PHP 4,700.00</b></h5>
+          <p style="font-size: 10pt; margin:0;">due on Oct 3</p>
+          <br>
+          <button class="btn btn-medium" onclick="showActivity('viewStatement')" style="width:80%; border-radius: 50px; background-color: #28C37E;">View Statement</button>
+          <br><br>
+      </div>
+
+    </div>
+    <!-- .home Activity-->
+
+    <!-- notification Activity-->
+    <div class="activity" id="notificationActivity">
+      <nav style="background-color: #28C37E">
+          <a href="#!" onclick="showActivity('home')" class="sidenav-trigger" style="margin-top: 10px;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 11V13H7.99L13.495 18.505L12.081 19.919L4.16 12L12.08 4.08002L13.494 5.49502L7.99 11H20Z" fill="white"/>
+              </svg>
+          </a>
+      </nav>
+    </div>
+    <!-- .notification Activity -->
+
+    <!-- viewStatement Activity-->
+    <div class="activity" id="viewStatementActivity">
+        <nav class="transparent z-depth-0">
+            <div class="left" style="padding-top: 20px; padding-left: 20px;">
+              <a href="#!" onclick="showActivity('home')" class="sidenav-trigger">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 11V13H7.99L13.495 18.505L12.081 19.919L4.16 12L12.08 4.08002L13.494 5.49502L7.99 11H20Z" fill="white"/>
+                  </svg>    
+              </a>
+            </div>
+          </nav>
+          <div>
+        <svg style="position:absolute; top:0; left:0; " width="100%" style="margin-bottom: 20px" viewBox="0 0 359 172" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M359 0H0V150.5C168.688 184.791 235.233 170.277 359 150.5V0Z" fill="#28C37E"/>
+        </svg>
+      </div>
+      <center>
+        <div style="width: 80%; background-color: white; z-index: 99999; position: relative; padding: 20px; margin-top: 30px; border-radius: 20px; box-shadow: 0px 4px 10px grey; ">
+          <p>Amount to Pay</p>
+          <h5><b style="color:#28C37E">Php 4,700.00</b></h5>
+          <p>due on Oct 3</p>
+          <br>
+          <hr>
+          <br>
+          <table>
+            <tbody>
+              <tr>
+                <td>Rent</td>
+                <td>4000.00</td>
+              </tr>
+              <tr>
+                <td>Water Bill</td>
+                <td>200.00</td>
+              </tr>
+              <tr>
+                  <td>Electric Bill</td>
+                  <td>500.00</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        <p>Payment Modes</p>
+        <br>
+        <div class="row">
+          <div class="col s6">
+            <button style="background-color:#28C37E; border:0; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; color: white; border-radius: 15px; font-size: 15pt;">Online<br>Payment</button>
+          </div>
+          <div class="col s6">
+              <button style="background-color:#28C37E; border:0; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; color: white; border-radius: 15px; font-size: 15pt;">Offline<br>Payment</button>
+          </div>
+        </div>
+      </center><br><br>
+    </div>
+    <!-- .viewStatement Activity-->
     
   </body>
 </html>
@@ -134,35 +257,19 @@
 <script src="../assets/materialize/js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 <script src="../assets/js/global.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
-
-  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
-
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
 
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAjxAHpjM7CS7bOqGLcn2Ey8iYHDjSp33M",
-    authDomain: "uhack-1369c.firebaseapp.com",
-    databaseURL: "https://uhack-1369c.firebaseio.com",
-    projectId: "uhack-1369c",
-    storageBucket: "uhack-1369c.appspot.com",
-    messagingSenderId: "731442403005",
-    appId: "1:731442403005:web:2978ae78ebd29faafcc9d4"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  $(document).ready(()=>{
-    if(isLoggedIn()){
+$(document).ready(()=>{
+  $('.sidenav').sidenav();
+/*  if(isLoggedIn()){
       showActivity('home');
     } else {
       showActivity('login');
-    }
+    }*/
+    showActivity('viewStatement');
+
   });
+  $(".loader").fadeOut();
 
   // add functions here
 
