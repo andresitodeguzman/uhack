@@ -12,6 +12,6 @@ $array = array(
     "newtenant_id"=>$newtenant_id
 );
 
-$result = setApartment($array);
+$result = setApartment($array, $mysqli);
 echo json_encode($result);
 ?>

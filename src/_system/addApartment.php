@@ -11,6 +11,6 @@ $array = array(
     "tenant_id"=>$tenant_id
 );
 
-$result = addApartment($array);
+$result = addApartment($array, $mysqli);
 echo json_encode($result);
 ?>

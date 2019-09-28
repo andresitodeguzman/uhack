@@ -80,30 +80,35 @@
           
       <div class="container">
           <div class="input-field">
-              <input type="text" id="full_name" style="border:2px solid #28C37E; border-radius: 50px;">
-              <label id="full_name" style="padding-left: 20px;">full name</label>
+              <input type="text" id="Rfirst_name" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rfirst_name" style="padding-left: 20px;">first name</label>
           </div>
 
           <div class="input-field">
-              <input type="text" id="contact_number" style="border:2px solid #28C37E; border-radius: 50px;">
-              <label id="contact_number" style="padding-left: 20px;">contact number</label>
+              <input type="text" id="Rlast_name" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rlast_name" style="padding-left: 20px;">last name</label>
           </div>
 
           <div class="input-field">
-              <input type="text" id="username" style="border:2px solid #28C37E; border-radius: 50px;">
-              <label id="username" style="padding-left: 20px;">username</label>
+              <input type="text" id="Rcontact_number" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rcontact_number" style="padding-left: 20px;">contact number</label>
+          </div>
+
+          <div class="input-field">
+              <input type="text" id="Rusername" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rusername" style="padding-left: 20px;">username</label>
           </div>
     
           <div class="input-field">
-            <input type="password" id="password" style="border:2px solid #28C37E; border-radius: 50px;">
-            <label id="password" style="padding-left: 20px;">password</label>
+            <input type="password" id="Rpassword" style="border:2px solid #28C37E; border-radius: 50px;">
+            <label id="Rpassword" style="padding-left: 20px;">password</label>
           </div>
 
           <center>
               <p style="color: #789593">By signing up, I agree to the<br> <a href="#!" style="color:#28C37E;">Terms and Conditions</a></p>
           </center>
           
-          <button class="btn btn-large" onclick="showActivity('code')" style="width:100%; border-radius: 50px; background-color: #28C37E; margin-bottom: 50px;">Continue</button>
+          <button class="btn btn-large" onclick="addTenant();" style="width:100%; border-radius: 50px; background-color: #28C37E; margin-bottom: 50px;">Continue</button>
       </div>      
     </div>
     <!-- .createAccount Activity -->
@@ -261,16 +266,54 @@
 <script>
 $(document).ready(()=>{
   $('.sidenav').sidenav();
-/*  if(isLoggedIn()){
+  if(isLoggedIn()){
       showActivity('home');
     } else {
       showActivity('login');
-    }*/
-    showActivity('viewStatement');
+    }
 
   });
   $(".loader").fadeOut();
 
   // add functions here
 
+const host = "0.0.0.0:8080";
+
+function addTenant(){
+  var fn = $("#Rfirst_name").val();
+  var ln = $("#Rlast_name").val();
+  var n = $("#Rcontact_number").val();
+  var u = $("#Rusername").val();
+  var p = $("#Rpassword").val();
+
+  if(!u){
+    M.toast({html:"Username is Required"});
+  } else {
+    if(!p){
+      M.toast({html: "Password is Required"});
+    } else {
+      $.ajax({
+        type:'POST',
+        url: 'http://localhost:8080/_system/addTenant.php',
+        data: {
+          first_name:fn,
+          last_name: ln,
+          contactnumber: n,
+          username: u,
+          password: p
+        },
+        success: (res)=>{
+          console.log(res);
+          if(res.result  == true){
+            localStorage.setItem("tenant",res.tenant)
+            showActivity('code');
+          }
+        }
+      }).fail(e=>{
+        M.toast({html:"An error occurred"});
+      });
+
+    }
+  }
+}
 </script>
