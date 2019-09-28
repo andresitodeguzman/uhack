@@ -1,9 +1,169 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
-    <script></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sample Title</title>
+    <script>
+      /*if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/project-tren/serviceworker.js',{scope:'/project-tren/'}).then(reg=>{
+          console.log('SW Log: Registration was Successful');
+        }).catch(err=>{
+          var error = err;
+          console.log(`SW Log: [Error] ${error}`);
+        });
+      } else {
+        console.log(`SW Log: [Error] Feature Not Available on this Browser`);
+      }*/
+    </script>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif !important;
+      }
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -99999999;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+
+    <!-- login Activity -->
+    <div class="activity" id="loginActivity">
+      <!--video autoplay muted loop id="myVideo">
+        <source src="./assets/videobg.mp4" type="video/mp4">
+      </video-->
+      <div class="container">
+        <h2 style="text-align:center; margin-bottom: 20%; margin-top: 20%; color: #789593">Hello<b style="color: #28C37E;">World</b></h2>
+
+        <div class="input-field">
+          <input type="text" id="username" style="border:2px solid #28C37E; border-radius: 50px;">
+          <label id="username" style="padding-left: 20px;">username</label>
+        </div>
+
+        <div class="input-field">
+            <input type="password" id="password" style="border:2px solid #28C37E; border-radius: 50px;">
+            <label id="password" style="padding-left: 20px;">password</label>
+        </div>
+
+        <button class="btn btn-large" style="width:100%; border-radius: 50px; background-color: #28C37E">Login</button><br><br>
+        <button class="btn btn-large" onclick="showActivity('createAccount')" style="width:100%; border-radius: 50px; background-color: #28C37E">Create an Account</button>
+        </div>
+    </div>
+    <!-- .login Activity -->
+
+    <!-- createAccount Activity -->
+    <div class="activity" id="createAccountActivity">
+        <div>
+            <h4 class="white-text" style="position:absolute; margin-left: 40px; margin-top:60px;">
+                Welcome!<br>Let's get started
+            </h4>
+        
+          <svg width="100%" style="margin-bottom: 20px" viewBox="0 0 359 172" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M359 0H0V150.5C168.688 184.791 235.233 170.277 359 150.5V0Z" fill="#28C37E"/>
+          </svg>    
+        </div>
+          
+      <div class="container">
+          <div class="input-field">
+              <input type="text" id="full_name" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="full_name" style="padding-left: 20px;">full name</label>
+          </div>
+
+          <div class="input-field">
+              <input type="text" id="contact_number" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="contact_number" style="padding-left: 20px;">contact number</label>
+          </div>
+
+          <div class="input-field">
+              <input type="text" id="username" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="username" style="padding-left: 20px;">username</label>
+          </div>
+    
+          <div class="input-field">
+            <input type="password" id="password" style="border:2px solid #28C37E; border-radius: 50px;">
+            <label id="password" style="padding-left: 20px;">password</label>
+          </div>
+
+          <center>
+              <p style="color: #789593">By signing up, I agree to the<br> <a href="#!" style="color:#28C37E;">Terms and Conditions</a></p>
+          </center>
+          
+          <button class="btn btn-large" onclick="showActivity('code')" style="width:100%; border-radius: 50px; background-color: #28C37E; margin-bottom: 50px;">Continue</button>
+      </div>      
+    </div>
+    <!-- .createAccount Activity -->
+
+    <!-- code Activity -->
+    <div class="activity" id="codeActivity">
+        <div>
+            <h4 class="white-text" style="position:absolute; margin-left: 40px; margin-top:60px;">
+                Got an apartment<br>code?
+            </h4>
+        
+          <svg width="100%" style="margin-bottom: 20px" viewBox="0 0 359 172" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M359 0H0V150.5C168.688 184.791 235.233 170.277 359 150.5V0Z" fill="#28C37E"/>
+          </svg>    
+        </div>
+
+        <div class="container" style="padding-top: 10px;">
+            <div class="input-field">
+                <input type="text" id="code" style="font-size: 30pt; border:2px solid #28C37E; border-radius: 30px; text-align:center; padding-top:15px; padding-bottom:15px;">
+                <label id="code" style="padding-left: 20px;">apartment code</label>
+              </div>
+
+              <button class="btn btn-large" onclick="showActivity('code')" style="width:100%; border-radius: 50px; background-color: #28C37E;">Add Apartment</button>
+              <center><p>or</p></center>
+              <button class="btn btn-large" onclick="showActivity('code')" style="width:100%; border-radius: 50px; background-color: #28C37E;">Scan QR</button>
+              <div style="margin-bottom: 60px;"></div>
+              <center>
+                  <a href="#!" style="color: #28C37E; font-size: 15pt;">Maybe Later</a>
+              </center>
+              <div style="margin-bottom: 30px;"></div>
+        </div>
+    </div>
+    <!-- .code Activity -->
+    
+  </body>
 </html>
-<script></script>
+<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/materialize/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+<script src="../assets/js/global.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAjxAHpjM7CS7bOqGLcn2Ey8iYHDjSp33M",
+    authDomain: "uhack-1369c.firebaseapp.com",
+    databaseURL: "https://uhack-1369c.firebaseio.com",
+    projectId: "uhack-1369c",
+    storageBucket: "uhack-1369c.appspot.com",
+    messagingSenderId: "731442403005",
+    appId: "1:731442403005:web:2978ae78ebd29faafcc9d4"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  $(document).ready(()=>{
+    if(isLoggedIn()){
+      showActivity('home');
+    } else {
+      showActivity('login');
+    }
+  });
+
+  // add functions here
+
+</script>

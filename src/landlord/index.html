@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sample Title</title>
+    <script>
+      /*if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/project-tren/serviceworker.js',{scope:'/project-tren/'}).then(reg=>{
+          console.log('SW Log: Registration was Successful');
+        }).catch(err=>{
+          var error = err;
+          console.log(`SW Log: [Error] ${error}`);
+        });
+      } else {
+        console.log(`SW Log: [Error] Feature Not Available on this Browser`);
+      }*/
+    </script>
+  </head>
+  <body>
+
+    <!-- login Activity -->
+    <div class="activity" id="loginActivity">
+      <div class="container">
+        <div class="input-field">
+          <input type="text" id="username">
+          <label id="username"></label>
+        </div>
+
+        <div class="input-field">
+            <input type="password" id="password">
+            <label id="password"></label>
+        </div>
+
+        <button class="btn btn-large">Login</button>
+        <button class="btn btn-large">Create an Account</button>
+      </div>
+    </div>
+
+    <div class="activity" id="createAccountActivity">
+      <div class="container">
+
+      </div>      
+    </div>
+
+    <div class="activity" id="homeActivity">
+        <div class="container">
+            
+        </div>      
+    </div>
+    
+  </body>
+</html>
+<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+<script src="../assets/js/jquery.js"></script>
+<script src="../assets/materialize/js/materialize.min.js"></script>
+<script src="../assets/js/global.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-firestore.js"></script>
+<script>
+  $(document).ready(()=>{
+    if(isLoggedIn()){
+      showActivity('home');
+    } else {
+      showActivity('login');
+    }
+  });
+
+  // add functions here
+
+</script>
