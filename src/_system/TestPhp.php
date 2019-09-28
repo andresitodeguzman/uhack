@@ -20,7 +20,7 @@
         if($stmt->execute()){
             //insert_id method is a method that help inserts an id in a row
             $id = $mysqli->insert_id;
-            $info = getLandlord($id);
+            $info = getLandlord($id, $mysqli);
             return array("result"=>True,"message"=>"Deleted landlord","landlord"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -34,7 +34,7 @@
         if($stmt->execute()){
             //insert_id method is a method that help inserts an id in a row
             $id = $mysqli->insert_id;
-            $info = getTenant($id);
+            $info = getTenant($id, $mysqli);
             return array("result"=>True,"message"=>"Deleted tenant","tenant"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -48,7 +48,7 @@
         if($stmt->execute()){
             //insert_id method is a method that help inserts an id in a row
             $id = $mysqli->insert_id;
-            $info = getReceivable($id);
+            $info = getReceivable($id, $mysqli);
             return array("result"=>True,"message"=>"Deleted receivable","receivable"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -62,7 +62,7 @@
         if($stmt->execute()){
             //insert_id method is a method that help inserts an id in a row
             $id = $mysqli->insert_id;
-            $info = getApartment($id);
+            $info = getApartment($id, $mysqli);
             return array("result"=>True,"message"=>"Deleted apartment","apartment"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -82,7 +82,7 @@
         if($stmt->execute()){
             //insert_id method is a method that help inserts an id in a row
             $id = $mysqli->insert_id;
-            $info = getLandlord($id);
+            $info = getLandlord($id, $mysqli);
             return array("result"=>True,"message"=>"Added landlord","landlord"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -90,7 +90,7 @@
     }
 
     function addTenant(Array $array, $mysqli){
-        $stmt = $mysqli->prepare("INSERT INTO `tenant` (firstname, lastname,contactnumber,username,`password`) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $mysqli->prepare("INSERT INTO `tenant` (firstname, lastname, contactnumber, username ,`password`) VALUES (?, ?, ?, ?, ?)");
         $firstname = $array['firstname'];
         $lastname = $array['lastname'];
         $contactnumber = $array['contactnumber'];
@@ -100,8 +100,7 @@
         $stmt->bind_param("sssss",$firstname,$lastname,$contactnumber,$username,$password);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getTenant($id);
-            return array("result"=>True,"message"=>"Added tenant","tenant"=>$info);
+            return array("result"=>True,"message"=>"Added tenant","tenant"=>getTenant($id, $mysqli));
         } else {
             return array("result"=>False,"message"=>"An error occurred");
         }
@@ -116,7 +115,7 @@
         $stmt->bind_param("sss",$name,$repeat,$price);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getReceivable($id);
+            $info = getReceivable($id, $mysqli);
             return array("result"=>True,"message"=>"Added receivable","receivable"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -131,7 +130,7 @@
         $stmt->bind_param("sss",$apartmentcode,$landlord_id,$tenant_id);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getApartment($id);
+            $info = getApartment($id, $mysqli);
             return array("result"=>True,"message"=>"Added apartment","apartment"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -147,7 +146,7 @@
         $stmt->bind_param("sssi",$newapartmentcode,$newlandlord_id,$newtenant_id,$apartment_id);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getApartment($id);
+            $info = getApartment($id, $mysqli);
             return array("result"=>True,"message"=>"Updated apartment","apartment"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -165,7 +164,7 @@
         $stmt->bind_param("sssssi",$newfirstname,$newlastname,$newcontactnumber,$newusername,$newpassword,$tenant_id);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getTenant($id);
+            $info = getTenant($id, $mysqli);
             return array("result"=>True,"message"=>"Updated tenant","tenant"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -181,7 +180,7 @@
         $stmt->bind_param("ssii",$newname,$newrepeat,$newprice,$receivable_id);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getReceivable($id);
+            $info = getReceivable($id, $mysqli);
             return array("result"=>True,"message"=>"Updated receivable","receivable"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -199,7 +198,7 @@
         $stmt->bind_param("sssssi",$newfirstname,$newlastname,$newcontactnumber,$newusername,$newpassword,$landlord_id);
         if($stmt->execute()){
             $id = $mysqli->insert_id;
-            $info = getLandlord($id);
+            $info = getLandlord($id, $mysqli);
             return array("result"=>True,"message"=>"Updated landlord","landlord"=>$info);
         } else {
             return array("result"=>False,"message"=>"An error occurred");
@@ -224,7 +223,7 @@
         return $array;
     }
 
-    function getTenant($mysqli){
+    function getTenant($id, $mysqli){
         $stmt = $mysqli->prepare("SELECT * FROM `tenant` WHERE id=? LIMIT 1");
         $stmt->bind_param("i",$id);
         $stmt->execute();
@@ -242,7 +241,7 @@
         return $array;
     }
 
-    function getAppartment($mysqli){
+    function getAppartment($id, $mysqli){
         $stmt = $mysqli->prepare("SELECT * FROM 'apartment' WHERE id=? LIMIT 1");
         $stmt->bind_param("i",$id);
         $stmt->execute();
@@ -258,7 +257,7 @@
         return $array;
     }
 
-    function getReceivable($mysqli){
+    function getReceivable($id, $mysqli){
         $stmt = $mysqli->prepare("SELECT * FROM 'receivable' WHERE id=? LIMIT 1");
         $stmt->bind_param("i",$id);
         $stmt->execute();
@@ -274,11 +273,11 @@
         return $array;
     }
 
-    function getAllTenant($mysqli){
+    function getAllTenant($id, $mysqli){
         $stmt = "SELECT * FROM `tenant` ";
         $array = array();
 
-        if($result = $this->mysqli->query($stmt)){
+        if($result = $mysqli->query($stmt)){
             while($a = $result->fetch_array()){
                 $ar = array(
                     "id"=>$a['id'],
@@ -295,11 +294,11 @@
         return $array;
     }
 
-    function getAllReceivable($mysqli){
+    function getAllReceivable($id, $mysqli){
         $stmt = "SELECT * FROM `receivable` ";
         $array = array();
 
-        if($result = $this->mysqli->query($stmt)){
+        if($result = $mysqli->query($stmt)){
             while($a = $result->fetch_array()){
                 $ar = array(
                     "id"=>$a['id'],
@@ -318,7 +317,7 @@
         $stmt = "SELECT * FROM `apartment` ";
         $array = array();
 
-        if($result = $this->mysqli->query($stmt)){
+        if($result = $mysqli->query($stmt)){
             while($a = $result->fetch_array()){
                 $ar = array(
                     "id"=>$a['id'],
@@ -333,11 +332,11 @@
         return $array;
     }
 
-    function getAllLandlord($mysqli){
+    function getAllLandlord($id, $mysqli){
         $stmt = "SELECT * FROM `landlord` ";
         $array = array();
 
-        if($result = $this->mysqli->query($stmt)){
+        if($result = $mysqli->query($stmt)){
             while($a = $result->fetch_array()){
                 $ar = array(
                     "id"=>$a['id'],

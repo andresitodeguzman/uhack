@@ -80,8 +80,13 @@
           
       <div class="container">
           <div class="input-field">
-              <input type="text" id="Rfull_name" style="border:2px solid #28C37E; border-radius: 50px;">
-              <label id="Rfull_name" style="padding-left: 20px;">full name</label>
+              <input type="text" id="Rfirst_name" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rfirst_name" style="padding-left: 20px;">first name</label>
+          </div>
+
+          <div class="input-field">
+              <input type="text" id="Rlast_name" style="border:2px solid #28C37E; border-radius: 50px;">
+              <label id="Rlast_name" style="padding-left: 20px;">last name</label>
           </div>
 
           <div class="input-field">
@@ -277,7 +282,7 @@ const host = "0.0.0.0:8080";
 function addTenant(){
   var fn = $("#Rfirst_name").val();
   var ln = $("#Rlast_name").val();
-  var n = $("#Rnumber").val();
+  var n = $("#Rcontact_number").val();
   var u = $("#Rusername").val();
   var p = $("#Rpassword").val();
 
@@ -305,7 +310,7 @@ function addTenant(){
           }
         }
       }).fail(e=>{
-        M.toast({html:"ayiyaiyay"});
+        M.toast({html:"An error occurred"});
       });
 
     }
